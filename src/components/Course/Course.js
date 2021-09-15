@@ -17,7 +17,7 @@ const Course = () => {
       console.log(data);
       setDuration(data.data.data.data.learningData);
     })();
-  }, []);
+  }, [params.id]);
 
   let current = 0;
   const averageDataPoints = duration.map((item, idx) => {
