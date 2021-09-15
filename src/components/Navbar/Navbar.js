@@ -17,11 +17,11 @@ const NavbarComp = () => {
                 <NavLink
                   className={classes.navLink}
                   style={{ textDecoration: "none" }}
-                  to="/"
+                  to="/course"
                   activeClassName={classes.linkActive}
                   exact
                 >
-                  Home
+                  Courses
                 </NavLink>
               </Nav.Link>
               <Nav.Link>
