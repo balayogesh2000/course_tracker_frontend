@@ -70,7 +70,7 @@ const Learning = () => {
       i < differenceBetweenDates(courseData.startDate, Date.now());
       i++
     ) {
-      let date = new Date();
+      let date = new Date(courseData.startDate);
       date.setDate(new Date(courseData.startDate).getDate() + i);
       duration += learningData[i] ? +learningData[i].duration : 0;
       tableBody.push(
