@@ -30,7 +30,7 @@ const Learning = () => {
         Date.now()
       );
       for (let i = fetchedLearningData.length; i < days; i++) {
-        fetchedLearningData.push({ from: "", to: "", duration: "" });
+        fetchedLearningData.push({ duration: "" });
       }
       setLearningData(fetchedLearningData);
       setLoader(false);
@@ -41,7 +41,6 @@ const Learning = () => {
     setLearningData((prev) => {
       const data = [...prev];
       data[index][key] = event.target.value;
-      console.log(data);
       return data;
     });
   };
@@ -61,7 +60,6 @@ const Learning = () => {
     setLoader(false);
     setEdit(false);
   };
-  console.log(learningData);
   useEffect(() => {
     const tableBody = [];
     let duration = 0;
@@ -74,10 +72,10 @@ const Learning = () => {
       date.setDate(new Date(courseData.startDate).getDate() + i);
       duration += learningData[i] ? +learningData[i].duration : 0;
       tableBody.push(
-        <tr className={classes.tr}>
+        <tr className={classes.tr} key={date.toDateString()}>
           <td>{i + 1}</td>
           <td>{date.toDateString()}</td>
-          <td>
+          {/* <td>
             {!edit ? (
               learningData[i]?.from
             ) : (
@@ -90,8 +88,8 @@ const Learning = () => {
                 />
               </InputGroup>
             )}
-          </td>
-          <td>
+          </td> */}
+          {/* <td>
             {!edit ? (
               learningData[i]?.to
             ) : (
@@ -104,7 +102,7 @@ const Learning = () => {
                 />
               </InputGroup>
             )}
-          </td>
+          </td> */}
           <td>
             {!edit ? (
               learningData[i]?.duration
@@ -141,8 +139,8 @@ const Learning = () => {
             <tr>
               <th>Days</th>
               <th>Date</th>
-              <th>Lecture From</th>
-              <th>Lecture To</th>
+              {/* <th>Lecture From</th>
+              <th>Lecture To</th> */}
               <th>Duration (mins)</th>
               <th>Total (mins)</th>
               <th>Average (mins)</th>
