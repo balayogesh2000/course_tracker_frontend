@@ -13,7 +13,7 @@ const CreateCourse = () => {
   const [name, setName] = useState("");
   const [duration, setDuration] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [url, setUrl] = useState("");
+  // const [url, setUrl] = useState("");
   const setLoader = useSetLoader();
 
   const submitHandler = async (e) => {
@@ -23,7 +23,6 @@ const CreateCourse = () => {
       name,
       duration,
       startDate,
-      url,
     });
     setLoader(false);
     toast.success("Course created successfully", {
@@ -73,7 +72,7 @@ const CreateCourse = () => {
               onChange={(e) => setStartDate(e.target.value)}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="link">
+          {/* <Form.Group className="mb-3" controlId="link">
             <Form.Label>Course Link</Form.Label>
             <Form.Control
               type="text"
@@ -82,7 +81,7 @@ const CreateCourse = () => {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
-          </Form.Group>
+          </Form.Group> */}
           <Button variant="primary" type="submit">
             Submit
           </Button>
