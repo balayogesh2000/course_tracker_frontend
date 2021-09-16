@@ -6,6 +6,7 @@ import CreateCourse from "./components/CreateCourse/CreateCourse";
 import CourseList from "./components/CourseList/CourseList";
 import Course from "./components/Course/Course";
 import Learning from "./components/Learning/Learning";
+import { LoaderProvider } from "./context/LoaderContext";
 
 const App = () => {
   return (
@@ -23,15 +24,17 @@ const App = () => {
         theme="colored"
       />
       <Navbar />
-      <div>
-        <Switch>
-          <Redirect exact path="/" to="/course" />
-          <Route exact path="/course" component={CourseList} />
-          <Route exact path="/create-course" component={CreateCourse} />
-          <Route exact path="/course/:id" component={Course} />
-          <Route exact path="/course/:id/learning" component={Learning} />
-        </Switch>
-      </div>
+      <LoaderProvider>
+        <div>
+          <Switch>
+            <Redirect exact path="/" to="/course" />
+            <Route exact path="/course" component={CourseList} />
+            <Route exact path="/create-course" component={CreateCourse} />
+            <Route exact path="/course/:id" component={Course} />
+            <Route exact path="/course/:id/learning" component={Learning} />
+          </Switch>
+        </div>
+      </LoaderProvider>
     </div>
   );
 };

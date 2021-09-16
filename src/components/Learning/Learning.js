@@ -5,6 +5,7 @@ import { useParams, useHistory } from "react-router";
 import { getCourse, updateCourse } from "../../api/course";
 import { differenceBetweenDates } from "../../utils/dateDifference";
 import showToast from "../../utils/toast";
+import { useSetLoader } from "../../context/LoaderContext";
 
 import classes from "./Learning.module.css";
 
@@ -15,9 +16,11 @@ const Learning = () => {
   const [learningData, setLearningData] = useState([]);
   const [edit, setEdit] = useState(false);
   const [tableBody, setTableBody] = useState([]);
+  const setLoader = useSetLoader();
 
   useEffect(() => {
     (async () => {
+      setLoader(true);
       const data = await getCourse(params.id);
       setCourseData(data.data.data.data);
       const fetchedCourseData = data.data.data.data;
@@ -30,8 +33,9 @@ const Learning = () => {
         fetchedLearningData.push({ from: "", to: "", duration: "" });
       }
       setLearningData(fetchedLearningData);
+      setLoader(false);
     })();
-  }, [params.id]);
+  }, [params.id, setLoader]);
 
   const updateLearningData = (event, index, key) => {
     setLearningData((prev) => {

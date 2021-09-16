@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { createCourse } from "../../api/course";
+import { useSetLoader } from "../../context/LoaderContext";
 
 import classes from "./CreateCourse.module.css";
 
@@ -13,15 +14,18 @@ const CreateCourse = () => {
   const [duration, setDuration] = useState("");
   const [startDate, setStartDate] = useState("");
   const [url, setUrl] = useState("");
+  const setLoader = useSetLoader();
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setLoader(true);
     await createCourse({
       name,
       duration,
       startDate,
       url,
     });
+    setLoader(false);
     toast.success("Course created successfully", {
       position: "top-right",
       autoClose: 2000,

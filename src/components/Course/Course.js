@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 
 import Chart from "./Chart/Chart";
 import { getCourse } from "../../api/course";
+import { useSetLoader } from "../../context/LoaderContext";
 
 import classes from "./Course.module.css";
 
@@ -11,13 +12,16 @@ const Course = () => {
   const params = useParams();
   const history = useHistory();
   const [duration, setDuration] = useState([]);
+  const setLoader = useSetLoader();
+
   useEffect(() => {
     (async () => {
+      setLoader(true);
       const data = await getCourse(params.id);
-      console.log(data);
       setDuration(data.data.data.data.learningData);
+      setLoader(false);
     })();
-  }, [params.id]);
+  }, [params.id, setLoader]);
 
   let current = 0;
   const averageDataPoints = duration.map((item, idx) => {

@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { getAllCourses } from "../../api/course";
+import { useSetLoader } from "../../context/LoaderContext";
 
 import classes from "./CourseList.module.css";
 // import deleteIcon from "../../assets/img/trash.svg";
@@ -10,12 +11,15 @@ import classes from "./CourseList.module.css";
 
 const CourseList = () => {
   const [courseList, setCourseList] = useState([]);
+  const setLoader = useSetLoader();
   useEffect(() => {
     (async () => {
+      setLoader(true);
       const data = await getAllCourses();
       setCourseList(data.data.data.doc);
+      setLoader(false);
     })();
-  }, []);
+  }, [setLoader]);
   return (
     <div>
       <div className={classes.container}>
