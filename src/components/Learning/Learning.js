@@ -47,14 +47,18 @@ const Learning = () => {
   };
 
   const saveHandler = async () => {
+    setLoader(true);
     await updateCourse(params.id, { learningData });
     setEdit(false);
+    setLoader(false);
     showToast("Learning Data saved successfully");
   };
 
   const cancelHandler = async () => {
+    setLoader(true);
     const data = await getCourse(params.id);
     setLearningData(data.data.data.data.learningData);
+    setLoader(false);
     setEdit(false);
   };
   console.log(learningData);
@@ -132,7 +136,7 @@ const Learning = () => {
           {edit && <Button onClick={saveHandler}>Save</Button>}
           {!edit && <Button onClick={() => history.goBack()}>Back</Button>}
         </div>
-        <Table bordered>
+        <Table bordered responsive>
           <thead>
             <tr>
               <th>Days</th>

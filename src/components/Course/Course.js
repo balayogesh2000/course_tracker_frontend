@@ -48,6 +48,7 @@ const Course = () => {
           >
             Edit Learning
           </Button>
+          <Button onClick={() => history.goBack()}>Back</Button>
         </div>
         <Chart
           type="line"

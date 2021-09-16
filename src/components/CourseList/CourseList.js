@@ -23,7 +23,7 @@ const CourseList = () => {
   return (
     <div>
       <div className={classes.container}>
-        <Table bordered hover responsive>
+        <Table bordered responsive>
           <thead>
             <tr>
               <th>#</th>
