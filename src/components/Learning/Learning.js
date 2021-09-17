@@ -30,7 +30,7 @@ const Learning = () => {
         Date.now()
       );
       for (let i = fetchedLearningData.length; i < days; i++) {
-        fetchedLearningData.push({ duration: "" });
+        fetchedLearningData.push({ duration: "", notes: "" });
       }
       setLearningData(fetchedLearningData);
       setLoader(false);
@@ -75,34 +75,6 @@ const Learning = () => {
         <tr className={classes.tr} key={date.toDateString()}>
           <td>{i + 1}</td>
           <td>{date.toDateString()}</td>
-          {/* <td>
-            {!edit ? (
-              learningData[i]?.from
-            ) : (
-              <InputGroup size="sm">
-                <FormControl
-                  type="number"
-                  min={0}
-                  value={learningData[i]?.from}
-                  onChange={(e) => updateLearningData(e, i, "from")}
-                />
-              </InputGroup>
-            )}
-          </td> */}
-          {/* <td>
-            {!edit ? (
-              learningData[i]?.to
-            ) : (
-              <InputGroup size="sm">
-                <FormControl
-                  type="number"
-                  min={0}
-                  value={learningData[i]?.to}
-                  onChange={(e) => updateLearningData(e, i, "to")}
-                />
-              </InputGroup>
-            )}
-          </td> */}
           <td>
             {!edit ? (
               learningData[i]?.duration
@@ -119,6 +91,27 @@ const Learning = () => {
           </td>
           <td>{duration.toFixed(2)}</td>
           <td>{(duration / (i + 1)).toFixed(2)}</td>
+          <td>
+            {!edit ? (
+              <p
+                style={{
+                  maxWidth: "300px",
+                  overflow: "auto",
+                  margin: "auto",
+                }}
+              >
+                {learningData[i]?.notes}
+              </p>
+            ) : (
+              <InputGroup>
+                <FormControl
+                  as="textarea"
+                  value={learningData[i]?.notes}
+                  onChange={(e) => updateLearningData(e, i, "notes")}
+                />
+              </InputGroup>
+            )}
+          </td>
         </tr>
       );
     }
@@ -139,11 +132,10 @@ const Learning = () => {
             <tr>
               <th>Days</th>
               <th>Date</th>
-              {/* <th>Lecture From</th>
-              <th>Lecture To</th> */}
               <th>Duration (mins)</th>
               <th>Total (mins)</th>
               <th>Average (mins)</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody>{tableBody}</tbody>
