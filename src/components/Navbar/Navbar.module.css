@@ -11,3 +11,8 @@
 .linkActive {
   color: #0d6efd;
 }
+
+.title {
+  text-decoration: none;
+  color: #333;
+}

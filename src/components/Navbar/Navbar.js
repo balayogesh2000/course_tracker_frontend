@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Navbar, Container, Nav } from "react-bootstrap";
 
 import classes from "./Navbar.module.css";
@@ -9,7 +9,11 @@ const NavbarComp = () => {
     <div className={classes.Navbar}>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand>Course Tracker</Navbar.Brand>
+          <Navbar.Brand>
+            <Link to="/" className={classes.title}>
+              Course Tracker
+            </Link>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className={`me-auto ${classes.nav}`}>

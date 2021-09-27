@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { getAllCourses, deleteCourse } from "../../api/course";
 import { useSetLoader } from "../../context/LoaderContext";
@@ -9,8 +9,10 @@ import Modal from "../Modal/Modal";
 
 import classes from "./CourseList.module.css";
 import deleteIcon from "../../assets/img/trash.png";
+import editIcon from "../../assets/img/edit.png";
 
 const CourseList = () => {
+  const history = useHistory();
   const [courseList, setCourseList] = useState([]);
   const setLoader = useSetLoader();
   const [show, setShow] = useState(false);
@@ -67,10 +69,22 @@ const CourseList = () => {
                     <td>{new Date(course.startDate).toDateString()}</td>
                     <td>
                       <img
+                        onClick={() =>
+                          history.push(`/course/${course._id}/learning/`)
+                        }
+                        src={editIcon}
+                        alt="edit"
+                        style={{ cursor: "pointer", height: "25px" }}
+                      />
+                      <img
                         onClick={() => deleteClickHanlder(course._id)}
                         src={deleteIcon}
                         alt="delete"
-                        style={{ cursor: "pointer", width: "25px" }}
+                        style={{
+                          cursor: "pointer",
+                          height: "25px",
+                          marginLeft: "10px",
+                        }}
                       />
                     </td>
                   </tr>
