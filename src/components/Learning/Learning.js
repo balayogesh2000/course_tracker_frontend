@@ -122,6 +122,9 @@ const Learning = () => {
     <div className={classes.learning}>
       <div className={classes.container}>
         <div className={classes.buttons}>
+          <Button onClick={() => history.push(`/course/${params.id}`)}>
+            Learning Average
+          </Button>
           {!edit && <Button onClick={() => setEdit(true)}>Edit</Button>}
           {edit && <Button onClick={cancelHandler}>Cancel</Button>}
           {edit && <Button onClick={saveHandler}>Save</Button>}
