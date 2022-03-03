@@ -76,7 +76,7 @@ const Learning = () => {
           className={classes.tr}
           key={date.toDateString()}
           style={{
-            background: !learningData[i].duration && "rgba(255, 0, 0, 0.3)",
+            background: !learningData[i]?.duration && "rgba(255, 0, 0, 0.3)",
           }}
         >
           <td>{i + 1}</td>
