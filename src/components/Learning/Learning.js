@@ -72,7 +72,13 @@ const Learning = () => {
       date.setDate(new Date(courseData.startDate).getDate() + i);
       duration += learningData[i] ? +learningData[i].duration : 0;
       tableBody.push(
-        <tr className={classes.tr} key={date.toDateString()}>
+        <tr
+          className={classes.tr}
+          key={date.toDateString()}
+          style={{
+            background: !learningData[i].duration && "rgba(255, 0, 0, 0.3)",
+          }}
+        >
           <td>{i + 1}</td>
           <td>{date.toDateString()}</td>
           <td>
