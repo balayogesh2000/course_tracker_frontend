@@ -64,9 +64,9 @@ const Learning = () => {
     const tableBody = [];
     let duration = 0;
     for (
-      let i = differenceBetweenDates(courseData.startDate, Date.now()) - 1;
-      i >= 0;
-      i--
+      let i = 0;
+      i < differenceBetweenDates(courseData.startDate, Date.now());
+      i++
     ) {
       let date = new Date(courseData.startDate);
       date.setDate(new Date(courseData.startDate).getDate() + i);
