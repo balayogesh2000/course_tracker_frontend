@@ -65,7 +65,7 @@ const Learning = () => {
     let duration = 0;
     for (
       let i = 0;
-      i <= differenceBetweenDates(courseData.startDate, Date.now());
+      i < differenceBetweenDates(courseData.startDate, Date.now());
       i++
     ) {
       let date = new Date(courseData.startDate);
